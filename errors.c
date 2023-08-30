@@ -53,8 +53,8 @@ int check_all_digits(char *str)
 	if (str == NULL)
 		return (1);
 
-	while (str[i] == '-' || str[i] == '+' || isdigit(str[i])
-	&& str[i] != '\0')
+	while ((str[i] == '-' || str[i] == '+' || isdigit(str[i]))
+	&& (str[i] != '\0'))
 		i++;
 
 	if (str[i] == '\0')

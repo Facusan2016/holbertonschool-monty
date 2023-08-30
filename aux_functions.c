@@ -23,6 +23,7 @@ FILE *open_file(char *filename)
 	file = fopen(filename, "r");
 	if (!file)
 	{
+		free(g);
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
