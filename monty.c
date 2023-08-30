@@ -15,6 +15,7 @@ int main(int argc, char **argv)
 	stack_t *m_stack = NULL;
 
 	g = malloc(sizeof(main_t));
+	check_malloc((void *) g);
 	g->arr_token = NULL;
 	g->file = open_file(argv[1]);
 	g->line = NULL;

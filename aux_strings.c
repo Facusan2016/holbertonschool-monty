@@ -20,6 +20,7 @@ char **tokenize(char *str, char *delim)
 		return (NULL);
 
 	cpy_str = strdup(str);
+	check_malloc((void *) str);
 	token = strtok(cpy_str, delim);
 	while (token != NULL)
 	{
@@ -28,9 +29,7 @@ char **tokenize(char *str, char *delim)
 	}
 	free(cpy_str);
 	res = malloc(sizeof(char **) * (count + 1));
-
-	if (res == NULL)
-		return (NULL);
+	check_malloc((void *) res);
 	cpy_str = strdup(str);
 	token = strtok(cpy_str, delim);
 	for (i = 0; token != NULL && i < count; i++)
