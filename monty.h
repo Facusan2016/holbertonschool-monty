@@ -45,6 +45,7 @@ typedef struct instruction_s
  * @line: Char pointer line.
  * @arr_token: Tokenized array.
  * @file: Reference to the open function.
+ * @stack: Reference to the main Stack.
  *
  * Description: global variables.
  */
@@ -54,6 +55,7 @@ typedef struct main_s
 	char *line;
 	char **arr_token;
 	FILE *file;
+	stack_t *stack;
 } main_t;
 
 extern main_t *g;
@@ -64,7 +66,7 @@ int check_all_digits(char *str);
 char **tokenize(char *str, char *delim);
 void free_arr_token(char **arr);
 char *read_line(FILE *file);
-void (*getFunction(char **arr))(stack_t **stack, unsigned int line_number);
+void (*getFunc(char **arr, int n))(stack_t **stack, unsigned int line_number);
 void free_g_and_exit(void);
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);

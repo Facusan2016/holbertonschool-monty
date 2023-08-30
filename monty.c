@@ -29,7 +29,6 @@ int main(int argc, char **argv)
 
 		if (is_blank(g->line) == 1)
 		{
-			free(g->line);
 			j++;
 			continue;
 		}
@@ -37,7 +36,8 @@ int main(int argc, char **argv)
 		g->arr_token = tokenize(g->line, delim);
 		check_malloc((void *) g->arr_token);
 
-		getFunction(g->arr_token)(&m_stack, j);
+		g->stack = m_stack;
+		getFunc(g->arr_token, j)(&m_stack, j);
 
 		free(g->line);
 		free_arr_token(g->arr_token);

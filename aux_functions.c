@@ -31,12 +31,13 @@ FILE *open_file(char *filename)
 }
 
 /**
- * getFunction - Returns the function requested for the opcode.
+ * getFunc - Returns the function requested for the opcode.
  * @arr: Reference to the stack.
+ * @n: Number of line where the function was executed
  * Return: Nothing.
 */
 
-void (*getFunction(char **arr))(stack_t **stack, unsigned int line_number)
+void (*getFunc(char **arr, int n))(stack_t **stack, unsigned int line_number)
 {
 	int count = 0;
 
@@ -51,8 +52,17 @@ void (*getFunction(char **arr))(stack_t **stack, unsigned int line_number)
 		{NULL, NULL}
 	};
 
-	while (ops[count].opcode != NULL && strcmp(ops[count].opcode, arr[0]) != 0)
+	while (ops[count].opcode != NULL &&
+	strcmp(ops[count].opcode, arr[0]) != 0)
 		count++;
+
+	if (ops[count].opcode == NULL)
+	{
+		fprintf(stderr, "L%i: unknown instruction %s\n", n, arr[0]);
+		free_stack(g->stack);
+		free_g_and_exit();
+		exit(EXIT_FAILURE);
+	}
 
 	return (ops[count].f);
 }
@@ -69,4 +79,3 @@ void free_g_and_exit(void)
 	fclose(g->file);
 	free(g);
 }
-

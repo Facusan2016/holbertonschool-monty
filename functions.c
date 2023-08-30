@@ -16,10 +16,12 @@ void _push(stack_t **stack, unsigned int line_number)
 		free_g_and_exit();
 		fprintf(stderr, "L%i: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
+
 	} else
 	{
 		new = malloc(sizeof(stack_t));
 		check_malloc((void *) new);
+
 		new->n = atoi(g->arr_token[1]);
 
 		if (*stack == NULL)
